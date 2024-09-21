@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { Country } from "@/types/Country";
-import { ArrowLeft, Globe, Flag, Compass } from "lucide-react";
-import CountryFlag from "@/app/components/CountryFlag";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Country } from '@/types/Country';
+import { ArrowLeft, Globe, Flag, Compass } from 'lucide-react';
+import CountryFlag from '@/app/components/CountryFlag';
 
 export default function CountryInfo({
   params,
@@ -23,13 +23,13 @@ export default function CountryInfo({
           `${process.env.NEXT_PUBLIC_API_URL}/countries/${countryCode}`
         );
         if (!res.ok) {
-          throw new Error("Failed to fetch country info");
+          throw new Error('Failed to fetch country info');
         }
         const data = await res.json();
         setCountry(data);
       } catch (error) {
         console.error(error);
-        setError("Failed to load country information. Please try again later.");
+        setError('Failed to load country information. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -61,7 +61,6 @@ export default function CountryInfo({
   }
 
   if (!country) return null;
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <header className="bg-white dark:bg-gray-800 shadow">

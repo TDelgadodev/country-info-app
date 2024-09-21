@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -14,16 +14,18 @@ export default function Home() {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const res = await axios.get<Country[]>(`${process.env.NEXT_PUBLIC_API_URL}/countries`);
+        const res = await axios.get<Country[]>(
+          `${process.env.NEXT_PUBLIC_API_URL}/countries`
+        );
         setCountries(res.data);
       } catch (error) {
-        console.error("Error fetching countries:", error);
+        console.error('Error fetching countries:', error);
       }
     };
     fetchCountries();
   }, []);
 
-  const filteredCountries = countries.filter(country =>
+  const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -42,14 +44,21 @@ export default function Home() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+            <Search
+              className="absolute left-3 top-2.5 text-gray-400"
+              size={18}
+            />
           </div>
         </div>
       </header>
       <section className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredCountries.map(country => (
-            <Link href={`/countries/${country.countryCode}`} key={country.countryCode} className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+          {filteredCountries.map((country) => (
+            <Link
+              href={`/countries/${country.countryCode}`}
+              key={country.countryCode}
+              className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
               <div className="relative h-40">
                 <CountryFlag
                   countryCode={country.countryCode}
@@ -57,8 +66,12 @@ export default function Home() {
                 />
               </div>
               <div className="p-4">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{country.name}</h2>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{country.region}</p>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  {country.name}
+                </h2>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  {country.region}
+                </p>
               </div>
             </Link>
           ))}

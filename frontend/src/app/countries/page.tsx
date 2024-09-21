@@ -26,7 +26,7 @@ const Home = () => {
       <ul>
         {countries.map(country => (
           <li key={country.countryCode}>
-            <Link href={`/country/${country.countryCode}`}>
+            <Link href={`/countries/${country.countryCode}`}>
               {country.name}
             </Link>
           </li>
